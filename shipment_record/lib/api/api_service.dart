@@ -87,7 +87,7 @@ Future<bool> submitNikData(String token, String nik, String shipmentCode) async 
   }
 
   // Fungsi untuk POST data dari ScannerScreen
-  Future<bool> submitScanData(String serialNumber, String shipmentCode, String modelCode) async {
+  Future<bool> submitScanData(String serialNumber, String shipmentCode, String modelCode, DateTime date) async {
     final url = Uri.parse('${baseUrl}SerialNum/CreateSerialNum');
 
     try {
@@ -96,6 +96,7 @@ Future<bool> submitNikData(String token, String nik, String shipmentCode) async 
         "SerialNumber": serialNumber.trim(),
         "ShipmentCode": shipmentCode.trim(),
         "ModelCode": modelCode.trim(),
+        "Date": date.toIso8601String(),
       };
 
       print('Sending Data: ${jsonEncode(requestBody)}');

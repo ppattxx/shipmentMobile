@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shipment_record/constants/color.dart';
+import 'package:shipment_record/view/forms.dart';
+import 'package:shipment_record/view/login.dart';
 import 'package:shipment_record/view/scanner.dart'; // Pastikan import yang benar
 
 class SettingsPage extends StatefulWidget {
@@ -19,15 +21,6 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context, 
-              MaterialPageRoute(builder: (context) => ScannerScreen(shipmentCode: '', shipmentData: '',)),
-            ); // Kembali ke halaman sebelumnya
-          },
-        ),
         title: Padding(
           padding: EdgeInsets.only(top: 20),
           child: Center(
@@ -42,6 +35,78 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
         ),
       ),
+        drawer: Drawer(
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: <Widget>[
+                    DrawerHeader(
+                      decoration: BoxDecoration(
+                      color: AppColors.primaryDark,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Menu",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.table_chart,
+                      ),
+                      title: Text(
+                        "Forms",
+                      ),
+                      onTap: (){
+                        Navigator.pushReplacement(
+                          context, 
+                          MaterialPageRoute(builder: (context) => FormsScreen(scannedData: [], modelCode: '')),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.qr_code,
+                      ),
+                      title: Text(
+                        "Shipment Record",
+                      ),
+                      onTap: (){
+                        Navigator.pushReplacement(
+                          context, 
+                          MaterialPageRoute(builder: (context) => ScannerScreen(shipmentCode: '', shipmentData: '',)),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.logout,
+                        color: Colors.red,
+                      ),
+                      title: Text(
+                        "Logout",
+                      ),
+                      onTap: (){
+                        Navigator.pushReplacement(
+                          context, 
+                          MaterialPageRoute(builder: (context) => LoginScreen()),
+                        );
+                      },
+                    )
+                  ],
+                ),
+              ),
+
       body: Container(
         width: double.infinity,
         height: double.infinity,

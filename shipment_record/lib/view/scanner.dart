@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shipment_record/constants/color.dart';
 import 'package:shipment_record/api/api_service.dart';
+import 'package:shipment_record/view/login.dart';
 import 'package:shipment_record/view/settings.dart';
-import 'package:shipment_record/view/shipment_code.dart';
 
 class ScannerScreen extends StatefulWidget {
   final int maxLength;
   final String shipmentCode;
+  // final Map<String, dynamic> shipmentData;
   final String shipmentData;
+
 
   ScannerScreen({this.maxLength = 0, required this.shipmentCode, required this.shipmentData});
 
@@ -23,23 +25,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
   int _totalSubmitted = 0;
   String? modelCode;
 
-  @override
-//   void initState() {
-//   super.initState();
-//   // Coba untuk mem-parsing shipmentData jika valid JSON
-//   try {
-//     final Map<String, dynamic> shipmentModel = jsonDecode(widget.shipmentData);
-//     if (shipmentModel.containsKey('modelCode')) {
-//       modelCode = shipmentModel['modelCode'];
-//       print('Model Code: $modelCode');
-//     } else {
-//       print('modelCode tidak ditemukan.');
-//     }
-//   } catch (e) {
-//     print('Error parsing shipment data: $e');
-//     // Jika data tidak valid JSON, tampilkan log atau lakukan penanganan lain
-//   }
-// }
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +39,11 @@ class _ScannerScreenState extends State<ScannerScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: Icon(Icons.logout_sharp, color: Colors.redAccent),
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => ShipmentCode()),
+              MaterialPageRoute(builder: (context) => LoginScreen()),
             );
           },
         ),
@@ -77,10 +62,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
           padding: EdgeInsets.only(top: 20),
           child: Center(
             child: Text(
-              'SCAN',
+              'SHIPMENT RECORD',
               style: GoogleFonts.poppins(
                 color: Colors.black,
-                fontSize: screenHeight * 0.05,
+                fontSize: screenHeight * 0.03,
                 fontWeight: FontWeight.bold,
               ),
             ),

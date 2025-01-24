@@ -20,12 +20,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true, // Memastikan body menyatu dengan AppBar
+      extendBodyBehindAppBar: true, 
       appBar: AppBar(
-        backgroundColor: Colors.transparent, // Transparan agar menyatu dengan gradasi
-        elevation: 0, // Menghilangkan shadow AppBar
+        backgroundColor: Colors.transparent,
+        elevation: 0, 
         title: Padding(
-          padding: EdgeInsets.only(top: 20), // Geser teks ke bawah
+          padding: EdgeInsets.only(top: 20),
           child: Center(
             child: Text(
               'Hello !',
@@ -39,15 +39,15 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
       body: Container(
-        width: double.infinity, // Memastikan lebar penuh
-        height: double.infinity, // Memastikan tinggi penuh
+        width: double.infinity, 
+        height: double.infinity, 
         decoration: BoxDecoration(
           gradient: AppColors.backgroundGradient,
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 32.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, // Pusatkan isi form
+            mainAxisAlignment: MainAxisAlignment.center, 
             children: <Widget>[
               Form(
                 key: _formKey,
@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: double.infinity,
                       child: Material(
                         borderRadius: BorderRadius.circular(6),
-                        elevation: 5, // Tambahkan efek bayangan tombol
+                        elevation: 5,
                         child: Ink(
                           decoration: BoxDecoration(
                             gradient: AppColors.buttonGradient,
@@ -140,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
   // Menambahkan metode login
   void _login() async {
     setState(() {
-      _errorMessage = ''; // Reset error message
+      _errorMessage = '';
     });
 
     bool isLoginSuccessful = await ApiService().login(

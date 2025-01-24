@@ -149,10 +149,10 @@ class _ShipmentInputScreenState extends State<ShipmentInputScreen> {
     return TextFormField(
       controller: controller,
       readOnly: readOnly,
-      style: GoogleFonts.poppins(color: Colors.black),  // Set font to Poppins
+      style: GoogleFonts.poppins(color: Colors.black),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: GoogleFonts.poppins(color: Colors.black),  // Set font to Poppins
+        labelStyle: GoogleFonts.poppins(color: Colors.black),
         prefixIcon: Icon(icon, color: Colors.black),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         filled: true,
@@ -167,7 +167,7 @@ class _ShipmentInputScreenState extends State<ShipmentInputScreen> {
       value: value,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: GoogleFonts.poppins(color: Colors.black),  // Set font to Poppins
+        labelStyle: GoogleFonts.poppins(color: Colors.black),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         filled: true,
         fillColor: Colors.white,

@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ApiService {
   static const String baseUrl = 'http://10.83.34.43/ShipApi/api/';
 
-  // Fungsi untuk login dan menyimpan token di SharedPreferences
   // Fungsi untuk login dan menyimpan token dan NIK di SharedPreferences
 Future<bool> login(BuildContext context, String nik, String password) async {
   final url = Uri.parse('${baseUrl}User/Login');
@@ -26,7 +25,7 @@ Future<bool> login(BuildContext context, String nik, String password) async {
         String token = data['token'];
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('auth_token', token);
-        await prefs.setString('nik', nik);  // Simpan NIK ke SharedPreferences
+        await prefs.setString('nik', nik);
 
         return true;
       } else {
@@ -50,19 +49,19 @@ Future<bool> login(BuildContext context, String nik, String password) async {
 
 // Fungsi untuk mengirimkan NIK ke server
 Future<bool> submitNikData(String token, String nik, String shipmentCode) async {
-  final url = Uri.parse('${baseUrl}Shipment/ShipUserPost'); // Ganti dengan endpoint API yang sesuai untuk mengirimkan NIK
+  final url = Uri.parse('${baseUrl}Shipment/ShipUserPost');
 
   try {
     final response = await http.post(
       url,
       headers: {
-        'Authorization': 'bearer $token',  // Menggunakan token untuk otentikasi
+        'Authorization': 'bearer $token',
         'Content-Type': 'application/json',
       },
       body: jsonEncode({
         "id": 0,
-        "userNik": nik,  // Mengirimkan NIK
-        "shipmentCode": shipmentCode,  // Mengirimkan shipmentCode
+        "userNik": nik,
+        "shipmentCode": shipmentCode,
       }),
     ).timeout(Duration(seconds: 10), onTimeout: () {
       throw TimeoutException("Koneksi ke server timeout.");
@@ -70,21 +69,21 @@ Future<bool> submitNikData(String token, String nik, String shipmentCode) async 
 
     if (response.statusCode == 200) {
       print("NIK berhasil dikirim!");
-      return true;  // Mengembalikan true jika berhasil
+      return true;
     } else {
       print("Error: ${response.statusCode} - ${response.body}");
-      return false;  // Mengembalikan false jika ada error
+      return false; 
     }
   } catch (e) {
     print("Error: $e");
-    return false;  // Mengembalikan false jika terjadi exception
+    return false; 
   }
 }
 
   // Fungsi untuk mendapatkan token dari SharedPreferences
   Future<String?> getToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString('auth_token'); // Mengambil token yang disimpan dengan key 'auth_token'
+    return prefs.getString('auth_token'); 
   }
 
   // Fungsi untuk POST data dari ScannerScreen
@@ -141,8 +140,8 @@ Future<bool> submitNikData(String token, String nik, String shipmentCode) async 
         var data = jsonDecode(response.body);
 
         // Extract data yang diperlukan
-        String code = data['code'];  // Code dari data shipment
-        String modelCode = data['modelCode'];  // Model code dari data shipment
+        String code = data['code'];  
+        String modelCode = data['modelCode'];  
 
         print('Shipment Code: $code');
         print('Model Code: $modelCode');

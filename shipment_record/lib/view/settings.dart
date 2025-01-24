@@ -58,7 +58,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    _buildSettingField('Setting', _settingController),
+                    _buildSettingField('Character', _settingController),
                     SizedBox(height: 20),
                     SizedBox(
                       width: double.infinity,

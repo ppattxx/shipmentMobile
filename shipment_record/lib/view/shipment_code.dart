@@ -27,7 +27,7 @@ class _ShipmentCodeState extends State<ShipmentCode> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Menutup dialog
+                Navigator.of(context).pop();
               },
               child: Text('OK'),
             ),
@@ -132,7 +132,7 @@ class _ShipmentCodeState extends State<ShipmentCode> {
 
 Future<void> _fetchShipmentData() async {
   setState(() {
-    _isLoading = true; // Menampilkan indikator loading
+    _isLoading = true;
   });
 
   // Mendapatkan token dari SharedPreferences
@@ -141,7 +141,7 @@ Future<void> _fetchShipmentData() async {
 
   // Mendapatkan NIK yang sudah disimpan
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? nik = prefs.getString('nik'); // Ambil NIK yang sudah disimpan
+  String? nik = prefs.getString('nik'); 
 
   // Pastikan NIK dan token ada sebelum mengirimkannya ke server
   if (nik != null && token != null) {
@@ -150,11 +150,6 @@ Future<void> _fetchShipmentData() async {
 
     if (isNikPosted) {
       print("NIK berhasil dikirim.");
-      // Pindah ke layar scanner setelah berhasil
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => ScannerScreen(shipmentCode: '', shipmentData: '',)),
-      );
     } else {
       _showErrorDialog('Gagal mengirimkan NIK.');
     }
@@ -175,6 +170,15 @@ Future<void> _fetchShipmentData() async {
         print('Model Code: $modelCode');
 
         if (modelCode != "") {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ScannerScreen(
+                shipmentCode: shipmentCode, 
+                shipmentData: modelCode,
+              ),
+            ),
+          );
           // Data ditemukan, lakukan sesuatu dengan modelCode
         } else {
           _showErrorDialog('Model Code tidak ditemukan dalam data shipment.');
@@ -190,9 +194,10 @@ Future<void> _fetchShipmentData() async {
   }
 
   setState(() {
-    _isLoading = false; // Sembunyikan indikator loading
+    _isLoading = false; 
   });
 }
+
 
 
   Widget _buildSettingField(String label, TextEditingController controller) {

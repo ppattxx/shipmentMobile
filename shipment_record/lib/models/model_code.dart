@@ -7,8 +7,8 @@ class ModelCode {
   // Method untuk membuat instance dari JSON dengan pemeriksaan null
   factory ModelCode.fromJson(Map<String, dynamic> json) {
     return ModelCode(
-      modelCodeId: json['modelCodeId'] ?? '',  // Gunakan nilai default jika null
-      modelName: json['modelNumber'] ?? '',     // Gunakan nilai default jika null
+      modelCodeId: json['modelCodeId'] ?? '',  
+      modelName: json['modelNumber'] ?? '',    
     );
   }
 }
